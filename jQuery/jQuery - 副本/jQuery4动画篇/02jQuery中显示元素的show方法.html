@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+让效果显示
+
+$("ele").hide(3000).show(3000)
+
+注意事项：
+1、show与hide方法修改的是display属性，通过visibility属性布局需要通过css犯法单独设置
+2、如果使用！important在你的样式中，比如display:none !important.如果你希望.show()方法正常工作，必须使用.css('display','block !important')重写样式
+3、如果让show与hide成为一个动画，name默认执行动画会改变元素的高度、透明度
+ -->
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+    .left div,
+    .right div {
+        width: 500px;
+        height: 50px;
+        padding: 5px;
+        margin: 5px;
+        float: left;
+        border: 1px solid #ccc;
+    }
+    
+    .left div {
+        background: #bbffaa;
+    }
+    
+    .right div {
+        background: yellow;
+    }
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+</head>
+
+<body>
+    <h2>hide-show</h2>
+    <div class="left">
+    
+        <div id="a1">hide-show</div>
+
+        <button>直接hide-show动画</button>
+
+    <script type="text/javascript">
+
+    //点击button
+    //执行3秒隐藏
+    //执行3秒显示
+    $("button").click(function() {
+        $("#a1").hide(3000).show(3000)
+    });
+
+    </script>
+</body>
+
+</html>

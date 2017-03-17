@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array</title>
+</head>
+<body>
+
+<!-- every:对数组中的每一项运行给定的函数，如果该函数对每一项都返回true，则返回true -->
+<h2>every遍历</h2>
+<script type="text/javascript">
+	var number = [1,2,3,4,5,6];
+	var everyResult = number.every(function(item, index, array){
+		return item > 2;
+	});
+	console.log("every:"+everyResult);
+</script>
+
+<!-- some:对数组中的每一项运行给定的函数，如果该函数中有一项返回true，则返回true -->
+<h2>some遍历</h2>
+<script type="text/javascript">
+	var number = [1,2,3,4,5,6];
+	var someResult = number.some(function(item, index, array){
+		return item > 2;
+	});
+	console.log("some:"+someResult);
+</script>
+
+<!-- filter：对数组中的每一项运行给定的函数，返回该函数会返回true的项组成的数组 -->
+<h2>filter遍历</h2>
+<script type="text/javascript">
+	var number = [1,2,3,4,5,6];
+	var filterResult = number.filter(function(item, index, array){
+		return item > 2;
+	});
+	console.log("filter:"+filterResult);
+</script>
+
+<!-- map:对数组中的每一项运行给定的函数，返回每次函数调用的结果组成数组 -->
+<h2>map遍历</h2>
+<script type="text/javascript">
+	var number = [1,2,3,4,5,6];
+	var mapResult = number.map(function(item, index, array){
+		return item * 2;
+	});
+	console.log("map："+ mapResult)
+</script>
+
+<!-- forEach:对数组中的每一项运行给定的函数 -->
+<h2>forEach遍历</h2>
+<script type="text/javascript">
+	var number = [1,2,3,4,5,6];
+	number.forEach(function(item, index, array){
+		console.log("forEach" + item);
+	});
+</script>
+</body>
+</html>

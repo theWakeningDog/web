@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>使用ajaxSetup()方法设置全局ajax请求默认选项</title>
+<!-- 
+使用ajaxSetup方法可以设置Ajax请求的一些全局性选项值，设置完成后，后面的Ajax请求将不需要再添加这些选项值
+$.ajaxSetup([options])或jQuery.ajaxSetup([options]):options为一个对象，通过该对象设置Ajax请求时的全局选项值
+
+
+例如，先调用ajaxSetup()方法设置全局的Ajax选项值，再点击两个按钮，分别使用ajax()方法请求不同的服务器数据，并将数据内容显示在页面
+ -->
+        <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js" type="text/javascript"></script>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <style type="text/css">
+#divtest
+{
+    width: 282px;
+}
+#divtest .title
+{
+    padding: 8px;
+    background-color:Blue;
+    color:#fff;
+    height: 23px;
+    line-height: 23px;
+    font-size: 15px;
+    font-weight: bold;
+}
+ul
+{
+    float: left;
+    width: 280px;
+    padding: 5px 0px;
+    margin: 0px;
+    font-size: 14px;
+    list-style-type: none;
+}
+ul li
+{
+    float: left;
+    width: 280px;
+    height: 23px;
+    line-height: 23px;
+    padding: 3px 8px;
+}
+.fl
+{
+    float: left;
+}
+.fr
+{
+    float: right;
+}
+        </style>
+    </head>
+    
+    <body>
+        <div id="divtest">
+            <div class="title">
+                <span class="fl">奇偶性和是否大于0</span> 
+                <span class="fr">
+                    <input id="btnShow_1" type="button" value="验证1" />
+                    <input id="btnShow_2" type="button" value="验证2" />
+                </span>
+            </div>
+            <ul>
+               <li>请求输入一个数字 
+                   <input id="txtNumber" type="text" size="12" />
+               </li>
+            </ul>
+        </div>
+        
+        <script type="text/javascript">
+            $(function () {
+                ?
+                ?
+                ?
+                        $("ul").append("<li>你输入的<b>  "
+                            + $("#txtNumber").val() + " </b>是<b> "
+                            + data + " </b></li>");
+                    }
+                });
+                $("#btnShow_1").bind("click", function () {
+                    $.ajax({
+                        data: { num: $("#txtNumber").val() },
+                        url: "http://www.imooc.com/data/check.php"
+                    });
+                })
+                $("#btnShow_2").bind("click", function () {
+                    $.ajax({
+                        data: { num: $("#txtNumber").val() },
+                        url: "http://www.imooc.com/data/check_f.php"
+                    });
+                })
+            });
+        </script>
+    </body>
+</html>

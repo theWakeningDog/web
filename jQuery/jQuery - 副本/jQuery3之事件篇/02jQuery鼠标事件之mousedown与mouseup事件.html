@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+mousedown：鼠标按下
+mouseup：鼠标弹起
+
+$ele.mousedown()：
+$ele.mousedown(handler(eventObject))
+$ele.mousedown([eventData],handler(eventObject))
+
+
+mousedown事件触发需要以下几点：
+
+mousedown强调是按下触发
+如果在一个元素按住了鼠标不放，并且拖动鼠标离开这个元素，并释放鼠标键，这仍然是算作mousedown事件
+任何鼠标按钮被按下时都能触发mousedown事件
+用event 对象的which区别按键，敲击鼠标左键which的值是1，敲击鼠标中键which的值是2，敲击鼠标右键which的值是3
+mouseup事件触发需要以下几点：
+
+mouseup强调是松手触发，与mousedown是相反的
+mouseup与mousedown组合起来就是click事件
+如果用户在一个元素上按下鼠标按键，并且拖动鼠标离开这个元素，然后释放鼠标键，这仍然是算作mouseup事件
+任何鼠标按钮松手时都能触发mouseup事件
+用event 对象的which区别按键，敲击鼠标左键which的值是1，敲击鼠标中键which的值是2，敲击鼠标右键which的值是3
+另外需要注意的是：
+
+click与mousedown的区别：
+
+click事件其实是由mousedown于mouseup 2个动作构成，所以点击的动作只有在松手后才触发
+ -->
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+    .test2 {
+        background: #bbffaa;
+    }
+    
+    .test3 {
+        background: yellow;
+    }
+    
+    .test2,
+    .test3 {
+        border: 1px solid red;
+    }
+    </style>
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+</head>
+
+<body>
+    <h2>.mousedown()方法</h2>
+
+    <h4>测试一</h4>
+    <button>弹出回调中的鼠标键</button>
+    <script type="text/javascript">
+    //this指向button元素
+    $("button:eq(0)").mousedown(function(e) {
+        alert('e.which: ' + e.which)
+    })
+    </script>
+
+
+    <h4>测试二</h4>
+    <div class="test2">
+        <p>$('button:first').mousedown(function(e) {alert(this)})</p>
+    </div>
+    <button>指定触发事件</button>
+    <script type="text/javascript">
+    $('p').mousedown(function(e) {
+            alert(e.target.textContent)
+        })
+        //this指向button元素
+    $("button:eq(1)").mousedown(function() {
+        $('p').mousedown() //指定触发绑定的事件
+    })
+    </script>
+
+
+    <h4>测试三</h4>
+    <div class="test3">
+        <p>$('.right').mousedown(1111, set)</p>
+    </div>
+    <button>不同函数传递数据</button>
+    <script type="text/javascript">
+    //不同函数传递数据
+    function data(e) {
+        alert(e.data) //1111
+    }
+
+    function a() {
+        $("button:eq(2)").mousedown(1111, data)
+    }
+    a();
+    </script>
+
+
+</body>
+
+</html>

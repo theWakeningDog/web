@@ -1,0 +1,86 @@
+<!DOCTYPE html >
+<!-- 
+使用load()方法通过Ajax请求加载服务器中的数据，并把返回的数据防止到指定的元素中，它的调用格式为：
+	load(url, [data], [callback])
+
+url:加载服务器地址，可选项data：请求时发送的数据，callback：数据请求成功后，执行的回调函数
+
+
+ -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <title>使用load()方法异步请求数据</title>
+        <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js" type="text/javascript"></script>
+        <!-- <link href="style.css" rel="stylesheet" type="text/css" /> -->
+        <style type="text/css">
+			#divtest
+			{
+			    width: 282px;
+			}
+			#divtest .title
+			{
+			    padding: 8px;
+			    background-color:Blue;
+			    color:#fff;
+			    height: 23px;
+			    line-height: 23px;
+			    font-size: 15px;
+			    font-weight: bold;
+			}
+			ul
+			{
+			    float: left;
+			    width: 280px;
+			    padding: 5px 0px;
+			    margin: 0px;
+			    font-size: 14px;
+			    list-style-type: none;
+			}
+			img
+			{
+			    margin: 8px;
+			}
+			ul li
+			{
+			    float: left;
+			    width: 280px;
+			    height: 23px;
+			    line-height: 23px;
+			    padding: 3px 8px;
+			}
+			.fl
+			{
+			    float: left;
+			}
+			.fr
+			{
+			    float: right;
+			}
+        </style>
+    </head>
+    
+    <body>
+        <div id="divtest">
+            <div class="title">
+                <span class="fl">我最爱吃的水果</span> 
+                <span class="fr">
+                    <input id="btnShow" type="button" value="加载" />
+                </span>
+            </div>
+            <ul></ul>
+        </div>
+        
+        <script type="text/javascript">
+            $(function () {
+                $("#btnShow").bind("click", function () {
+                    var $this = $(this);
+                    $("ul")
+                    .html("<img src='Images/Loading.gif' alt=''/>")
+                    .load('http://www.imooc.com/data/fruit_part.html', function(){
+                        $this.attr("disabled", "true");
+                    });
+                })
+            });
+        </script>
+    </body>
+</html>

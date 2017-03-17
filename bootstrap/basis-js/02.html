@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <script src="js/jquery-1.11.0.min.js"></script>
+</head>
+<body id="d1">
+<table border="0" style="text-align: center;" width="100%" id="myTable">
+  <tr>
+    <td width="150px;">表头1</td>
+    <td width="150px;">表头2</td>
+    <td width="150px;">表头3</td>
+    <td width="150px;">表头4</td>
+    <td width="150px;">表头5</td>
+    <td width="150px;">操作</td>
+  </tr>
+</table>
+</body>
+<script type="text/javascript">
+ //创建table表格
+//             var table = document.createElement("table");
+//             //获取行数值
+//             var line = 10;
+//             //获取列数值
+//             var list = 10;
+//             for (var i = 0; i <= line; i++) {
+//                 //alert(line);
+//                 //创建tr
+//                 var tr = document.createElement("tr");
+//                 for (var j = 0; j <= list; j++) {
+//                     //alert(list);
+//                     //创建td
+//                     var td = document.createElement("td");
+//                     td.innerText = i + '*' + j;
+//                     tr.appendChild(td);
+//                 }
+//                 table.appendChild(tr);
+//             }
+ 
+//             document.getElementById("d1").appendChild(table);
+// function autocreate() {
+           
+//         }
+         var num = 0;
+    // function addTable(){
+        var tableHtml ="";
+        tableHtml += '<tr id="tr'+num+'">'
+                 +'<td>1</td>'
+                 +'<td>2</td>'
+                 +'<td>3</td>'
+                 +'<td>4</td>'
+                 +'<td>5</td>'
+                 +'<td><a style="cursor: pointer; color: blue;" onclick="removeTr('+num+')">删除</a>'
+                     +'<a id="edit'+num+'" class="edit" style="cursor: pointer; color: blue;" onclick="editDataByOne('+num+')">修改</a>'
+                     +'<a id="save'+num+'" class="hide" style="cursor: pointer; color: blue;" onclick="saveByOne('+num+')">保存</a>'
+                 +'</td>'
+                 +'</tr>';
+        
+        var elements = $("#myTable").children().length;    //表示id为“mtTable”的标签下的子标签的个数
+        
+        $("#myTable").children().eq(elements - 1).after(tableHtml); //在表头之后添加空白行
+        num++;     
+    // }
+</script>
+    
+</html>

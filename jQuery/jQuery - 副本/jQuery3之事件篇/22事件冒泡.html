@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>事件冒泡</title>
+  <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      //为span元素绑定click事件
+      $('span').bind('click', function () {
+        var txt = $('#msg').html() + '<p>内层span元素被点击</p>';
+        $('#msg').html(txt);
+         
+      });
+      //为span元素绑定click事件
+      $('#content').bind('click', function () {
+        var txt = $('#msg').html() + '<p>外层div元素被点击</p>';
+        $('#msg').html(txt);
+      });
+      //为span元素绑定click事件
+      $('body').bind('click', function () {
+        var txt = $('#msg').html() + '<p>body元素被点击</p>';
+        $('#msg').html(txt);
+      });
+    });
+     
+  </script>
+</head>
+<body>
+  <div id="content">
+    外层div元素
+    <span><button>span</button></span>
+  </div>
+  <div id="msg"></div>
+</body>
+</html>

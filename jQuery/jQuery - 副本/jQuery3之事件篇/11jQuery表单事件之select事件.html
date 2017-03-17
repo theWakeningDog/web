@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+当textarea或文本类型的input元素中的文本被选择时，会发生select事件
+这个函数会调用执行绑定到select事件的所有函数，包括浏览器的默认行为。可以通过在某个绑定函数中返回false来防止触发浏览器的默认行为
+
+注意：
+	select事件只能用于input元素与textarea元素
+
+方法：
+	1、select()：触发select事件
+	$('input').select()
+
+	2、$ele.select(handler(eventObject)):绑定$ele元素，每次$ele元素触发点击操作会执行回调handler函数
+	
+	<input id="test" value="文字选中"></input>
+	$("#test").select(function() { //	响应文字选中回调
+    	//this指向 input元素 
+	});
+
+	3、$ele.select( [eventData ], handler(eventObject) )
+
+	使用与方法二一致，不过可以接受一个数据参数，这样的处理是为了解决不同作用域下数据传递的问题
+
+	<input id="test" value="文字选中"></input>
+	$("#test").select(11111,function(e) {//响应文字选中回调
+    	//this指向 div元素 
+   		//e.date  => 11111 传递数据
+	});
+ -->
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+    .left div,
+    .right div {
+        width: 500px;
+        height: 80px;
+        padding: 5px;
+        margin: 5px;
+        float: left;
+        border: 1px solid #ccc;
+    }
+    
+    .left div {
+        background: #bbffaa;
+    }
+    
+    .right div {
+        background: yellow;
+    }
+    
+    select {
+        height: 100px;
+    }
+    </style>
+    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+</head>
+
+<body>
+    <h2>input与textarea</h2>
+    <div class="left">
+        <h4>测试一</h4>
+        <div class="aaron">
+            选中文字：input
+            <input type="text" value="慕课网" />
+        </div>
+        <button id="bt1">触发input元素的select事件</button>
+        
+        <h4>测试二</h4>
+        <div class="aaron">
+            textarea：
+            <textarea rows="3" cols="20">用鼠标选中文字</textarea>
+        </div>
+    </div>
+ 
+    <script type="text/javascript">
+
+    //监听input元素中value的选中
+    //触发元素的select事件
+    $("input").select(function(e){
+        console.log(e.target.value)
+        console.log($(this))
+        console.log(this)
+        console.log($(this).val())
+        console.log(this.value)
+    })
+    $("#bt1").click(function(){
+        $("input").select();
+    })
+
+
+    //监听textarea元素中value的选中
+    $('textarea').select(function(e) {
+        alert(e.target.value);
+    });
+
+    </script>
+</body>
+
+</html>

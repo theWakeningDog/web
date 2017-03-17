@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+鼠标事件，表单事件与键盘事件在底层的处理都是通过一个"on"方法来实现的
+
+用法：
+1、on(events,[selector],[data])
+
+例：
+点击事件
+	$("#elem").click(function(){}):快捷方式
+	$("#elem").on("click",function(){}):on方式
+两者最大的区别是on可以自定义事件名。
+
+2、多个事件绑定同一个函数
+$("#elem").on("mouseover mouseout", function(){}):通过空格分开，传递不同的事件名，可以同时绑定多个事件
+
+3、多个事件绑定不同函数
+$("#elem").on({
+	mouseover:function(){},
+	mouseout:function(){},
+})
+
+4、将数据床底到处理程序
+function greet(event){
+	alert("hello" + event.data.name);
+}
+$("button").on("click", {
+	name:"慕课网"
+}, greet);
+可以通过第二参数（对象），当一个事件被触发时，要传递给事件处理函数
+
+
+ -->
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+    .left div,
+    .right div {
+        width: 100%;
+        height: 50px;
+        padding: 5px;
+        margin: 5px;
+        float: left;
+        border: 1px solid #ccc;
+    }
+    
+    .left div {
+        background: #bbffaa;
+    }
+    
+    .right div {
+        background: yellow;
+    }
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+</head>
+
+<body>
+    <h2>on绑定多事件</h2>
+
+    <h4>测试一</h4>
+    <div class="left">
+        点击触发：on('click',fn)
+        <div id="test1"></div>
+    </div>
+    <script type="text/javascript">
+    //事件绑定一
+    $("#test1").on('click', function(e) {
+        $(this).text('触发事件：' + e.type)
+    })
+    </script>
+
+
+    <h4>测试二</h4>
+    <div class="left">
+        点击触发：on('mousedown mouseup')
+        <div id="test2"></div>
+    </div>
+    <script type="text/javascript">
+    //多事件绑定一
+    $("#test2").on('mousedown mouseup', function(e) {
+        $(this).text('触发事件：' + e.type)
+    })
+    </script>
+
+
+    <h4>测试三</h4>
+    <div class="right">
+        点击触发：on(mousedown:fn1,mouseup:fn2)
+        <div id="test3"></div>
+    </div>
+    <script type="text/javascript">
+    //多事件绑定二
+    $("#test3").on({
+        mousedown: function(e) {
+            $(this).text('触发事件：' + e.type)
+        },
+        mouseup: function(e) {
+            $(this).text('触发事件：' + e.type)
+        }
+    })
+    </script>
+</body>
+
+</html>

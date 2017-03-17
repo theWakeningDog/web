@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+在input元素上绑定keydown事件，每次获取的内容都是之前输入的，当前输入的获取不到
+
+keydown事件触发在文字还没敲进文本框，这时如果在keydown事件中输出文本框中的文本，得到的是触发键盘事件前的文本，而keyup事件触发时整个键盘事件的操作已经完成，获得的是触发键盘事件后的文本
+
+当浏览器捕获键盘输入时，还提供了一个keypress的响应，这个跟keydown是非常相似，
+
+keypress事件与keydown和keyup的主要区别
+
+只能捕获单个字符，不能捕获组合键
+无法响应系统功能键（如delete，backspace）
+不区分小键盘和主键盘的数字字符
+总而言之，
+
+KeyPress主要用来接收字母、数字等ANSI字符，而 KeyDown 和 KeyUP 事件过程可以处理任何不被 KeyPress 识别的击键。诸如：功能键（F1-F12）、编辑键、定位键以及任何这些键和键盘换档键的组合等。
+ -->
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+    .left div,
+    .right div {
+        width: 500px;
+        height: 50px;
+        padding: 5px;
+        margin: 5px;
+        float: left;
+        border: 1px solid #ccc;
+    }
+    
+    .left div {
+        background: #bbffaa;
+    }
+    em{
+        font-weight: 900;
+        color: red;
+    }
+    </style>
+    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+</head>
+
+<body>
+    <h2>keypress()事件</h2>
+    <div class="left">
+        <div class="aaron">监听keypress输入:
+            <input class="target1" type="text" value="" /><br />
+            输入中文测试，无法显示:<em></em>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    //监听键盘按键
+    //获取输入的值
+    $('.target1').keypress(function(e) {
+        $("em").text(e.target.value)
+    });
+
+
+
+    </script>
+
+</body>
+
+</html>

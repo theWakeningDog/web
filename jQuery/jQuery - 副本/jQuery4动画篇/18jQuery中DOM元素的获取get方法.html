@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+jQuery是一个合集对象，如果需要单独操作合集中的某一个元素，可以通过.get()方法获取到
+
+<a>1</a>
+<a>2</a>
+<a>3</a>
+
+通过jQuery获取所有的a元素合集$("a"),如果想进一步在合集中找到第二个dom元素单独处理，可以使用get方法
+
+.get([index])
+
+注意2点
+
+get方法是获取的dom对象，也就是通过document.getElementById获取的对象
+get方法是从0开始索引
+
+负索引值参数
+
+get方法还可以从后往前索引，传递一个负索引值，注意的负值的索引起始值是-1
+
+同样是找到第二元素，可以传递 $(a).get(-2) 
+ -->
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+    a {
+       
+        font-size: 30px;
+        font-weight: 900;
+    }
+    
+    div {
+        width: 200px;
+        height: 100px;
+        background-color: yellow;
+        color: red;
+    }
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+</head>
+
+<body>
+    <h2>get方法</h2>
+
+    <div id="aaron">
+        <a>1</a>
+        <a>2</a>
+        <a>3</a>
+        <a>4</a>
+        <a>5</a>
+    </div>
+
+    <select id="animation">
+        <option value="1">get正数索引参数</option>
+        <option value="2">get负数索引参数</option>
+    </select>
+    <input id="exec" type="button" value="点击执行">
+    <script type="text/javascript">
+    $("#exec").click(function() {
+        var v = $("#animation").val();
+        var $aaron = $("#aaron a");
+
+        //通过get找到第二个a元素，并修改蓝色字体
+        if (v == "1") {
+           $aaron.get(1).style.color = "blue"
+        } else if (v == "2") {
+            //通过get找到最后一个a元素，并修改字体颜色
+            $aaron.get(-1).style.color = "#8A2BE2"
+        }
+    });
+    </script>
+</body>
+
+</html>

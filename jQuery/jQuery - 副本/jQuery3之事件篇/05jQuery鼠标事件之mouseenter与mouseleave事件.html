@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+鼠标移动到元素内部或元素外部
+
+使用和mouseover和mouseout一样
+
+mouseenter JavaScript事件是Internet Explorer专有的。由于该事件在平时很有用，jQuery的模拟这一事件，以便它可用于所有浏览器。该事件在鼠标移入到元素上时被触发。任何HTML元素都可以接受此事件。
+
+mouseenter事件和mouseover的区别
+
+关键点就是：冒泡的方式处理问题
+简单的例子：
+
+mouseover为例：
+
+<div class="aaron2">
+    <p>鼠标离开此区域触发mouseleave事件</p>
+</div>
+如果在p元素与div元素都绑定mouseover事件，鼠标在离开p元素，但是没有离开div元素的时候，触发的结果:
+
+	p元素响应事件
+	div元素响应事件
+这里的问题是div为什么会被触发？ 原因就是事件冒泡的问题，p元素触发了mouseover，他会一直往上找父元素上的mouseover事件，如果父元素有mouseover事件就会被触发
+
+所以在这种情况下面，jQuery推荐我们使用 mouseenter事件
+
+mouseenter事件只会在绑定它的元素上被调用，而不会在后代节点上被触发
+ -->
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+    .left div,
+    .right div {
+        width: 350px;
+        height: 150px;
+        padding: 5px;
+        margin: 5px;
+        border: 1px solid #ccc;
+    }
+    p{
+        height: 50px;
+        border: 1px solid red;
+        margin: 30px;
+    }
+    .left div {
+        background: #bbffaa;
+    }
+    .right div {
+        background: yellow;
+    }
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+</head>
+
+<body>
+    <h2>.mouseover()方法</h2>
+    <div class="left">
+        <div class="aaron1">
+            <p>鼠标离开此区域触发mouseover事件</p>
+            <a>mouseover事件触发次数：</a><br/>
+            <a>mouseover冒泡事件触发次数：</a>
+        </div>
+    </div>
+
+    <h2>.mouseenter()方法</h2>
+    <div class="right">
+        <div class="aaron2">
+            <p>鼠标进入此区域触发mouseenter事件</p>
+            <a>mouseenter事件触发次数：</a><br/>
+            <a>mouseenter冒泡事件触发次数：</a>
+        </div>
+    </div>
+    <br/>
+   
+    
+    <script type="text/javascript">
+
+        var i = 0;
+        $(".aaron1 p").mouseover(function(e) {
+            $(".aaron1 a:first").html('mouseover事件触发次数：' + (++i))
+        })
+
+        var n = 0;
+        $(".aaron1").mouseover(function() {
+            $(".aaron1 a:last").html('mouseover冒泡事件触发次数：' + (++n))
+        })
+
+
+    </script>
+
+
+    <script type="text/javascript">
+
+        var i = 0;
+        $(".aaron2 p").mouseenter(function(e) {
+            $(".aaron2 a:first").html('mouseenter事件触发次数：' + (++i))
+        })
+
+        var n = 0;
+        $(".aaron2").mouseenter(function() {
+            $(".aaron2 a:last").html('mouseenter冒泡事件触发次数：' + (++n))
+        })
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+click:单击
+dbclick：双击
+
+使用：
+	1、$ele.click()不带任何参数一般是用来指定触发一个事件，用的比较少
+	2、$ele.click(handler(eventObject)):每次点击会执行handler函数，方法中this是指向了绑定事件的元素
+	3、$ele.click([eventData], handler(eventObject)):处理与2相同，可以接收一个数据参数，这样的处理是为了解决不同作用域下数据传递的问题
+例：
+<div id="test">点击触发<div>
+$("#test").click(11111,function(e) {
+    //this指向 div元素
+    //e.date  => 11111 传递数据
+});
+
+click事件触发需要以下几点：
+
+click事件其实是由mousedown与mouseup 2个动作构成，所以点击的动作只有在松手后才触发
+
+dbclick事件触发需要以下几点：
+
+dbclick又是由2个click叠加而来的，所以dbclick事件只有在满足以下条件的情况下才能被触发
+
+鼠标指针在元素里面时点击。
+鼠标指针在元素里面时释放。
+鼠标指针在元素里面时再次点击，点击间隔时间，是系统而定。
+鼠标指针在元素里面时再次释放。
+
+注意：在同一元素上同时绑定 click 和 dblclick 事件是不可取的。各个浏览器事件触发的顺序是不同的，一些浏览器在dblclick之前接受两个 click 事件 ，而一些浏览器只接受一个 click 事件。用户往往可通过不同的操作系统和浏览器配置双击灵敏度
+ -->
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+    .test2 {
+        background: #bbffaa;
+    }
+    .test3 {
+        background: yellow;
+    }
+    .test2,.test3{
+        border: 1px solid red;
+    }
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+</head>
+
+<body>
+    <h2>.click()方法</h2>
+
+    <h4>测试一</h4>
+    <button>元素绑定事件,弹出回调中的this</button>
+    <script type="text/javascript">
+        //this指向button元素
+         $("button:eq(0)").click(function() {
+            alert(this)
+        })
+    </script>
+
+
+
+    <h4>测试二</h4>
+    <div class="test2">
+        <p>$('button:first').click(function(e) {alert(this)})</p>
+    </div>
+    <button>指定触发事件</button>
+    <script type="text/javascript">
+        $('p').click(function(e) {
+            alert(e.target.textContent)
+        })
+        //this指向button元素
+        $("button:eq(1)").click(function() {
+            $('p').click() //指定触发绑定的事件
+        })
+    </script>
+
+
+
+    <h4>测试三</h4>
+    <div class="test3">
+        <p>$('.right').click(1111, set)</p>
+    </div>
+
+    <button>不同函数传递数据</button>
+    <script type="text/javascript">
+
+        //不同函数传递数据
+        function data(e) {
+            alert(e.data) //1111
+        }
+
+        function a() {
+            $("button:eq(2)").click(1111, data)
+        }
+        a();
+
+    </script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+.slideDown：用滑动动画显示一个匹配元素
+
+.slideDown()：用滑动动画显示一个匹配元素
+
+.slideDown()方法将给匹配元素的高度的动画，这会导致页面的下面部分滑下去，弥补了显示的方式
+
+常见的操作，提供一个动画是时间，然后传递一个回调，用于知道动画是什么时候结束
+
+.slideDown( [duration ] [, complete ] )
+持续时间（duration）是以毫秒为单位的，数值越大，动画越慢，不是越快。字符串 'fast' 和 'slow' 分别代表200和600毫秒的延时。如果提供任何其他字符串，或者这个duration参数被省略，那么默认使用400 毫秒的延时。
+
+具体使用：
+
+$("ele").slideDown(1000, function() {
+    //等待动画执行1秒后,执行别的动作....
+});
+注意事项：
+
+下拉动画是从无到有，所以一开始元素是需要先隐藏起来的，可以设置display:none
+如 果提供回调函数参数，callback会在动画完成的时候调用。将不同的动画串联在一起按顺序排列执行是非常有用的。这个回调函数不设置任何参数，但是 this会设成将要执行动画的那个DOM元素，如果多个元素一起做动画效果，那么要非常注意，回调函数会在每一个元素执行完动画后都执行一次，而不是这组 动画整体才执行一次
+
+ -->
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+    .left div,
+    .right div {
+        width: 100%;
+        height: 50px;
+        padding: 5px;
+        margin: 5px;
+        float: left;
+        border: 1px solid #ccc;
+        display: none;
+    }
+    .left div {
+        background: #bbffaa;
+    }
+    
+    .right div {
+        background: yellow;
+    }
+    </style>
+    <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+</head>
+
+<body>
+    <h2>slideDown</h2>
+    <div class="left">
+        <h4>测试一</h4>
+        <div id="a1">hide-show</div>
+        <button>点击slideDown显示动画</button>
+    </div>
+        <script type="text/javascript">
+        //点击button
+        //执行3秒隐藏
+        //执行3秒显示
+        $("button:first").click(function() {
+            $("#a1").slideDown(3000)
+        });
+        </script>
+    <div class="right">
+        <h4>测试二</h4>
+        <div id="a2">hide-show</div>
+        <button>点击slideDown执行回调</button>
+    </div>
+        <script type="text/javascript">
+        //点击button
+        //执行3秒隐藏
+        //执行3秒显示
+        $("button:last").click(function() {
+            $("#a2").slideDown(3000,function(){
+                alert('动画执行结束')
+            })
+        });
+        </script>
+</body>
+
+
+</html>
