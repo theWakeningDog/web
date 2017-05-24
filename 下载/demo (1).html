@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <!--网站编码格式，UTF-8 国际编码，GBK或 gb2312 中文编码-->
+  <meta charset="UTF-8">
+  <meta name="Keywords" content="关键词一，关键词二">
+  <meta name="Description" content="网站描述内容">
+  <title>Document</title>
+  <!--css js 文件的引入-->
+  <style  type="text/css">
+  body{background:#000;overflow:hidden; }
+  div{position:absolute;}
+  </style>
+ </head>
+ <body>
+ <script type="text/javascript" src="js/jquery.js"></script> 
+ <script type="text/javascript">
+//鼠标点击浏览器窗口
+$(document).click(function(e){
+//alert("我被点击了");
+var _div=$("<div></div>");
+_div.css({width:"4px",height:"30px",background:"red"});
+$("body").append(_div);
+var t=$(document).height();//获取浏览器窗口的高度
+var w=$(document).width();//获取浏览器窗口的宽度
+var l=e.clientX;//鼠标点击的位置，与浏览窗口左边的距离
+var _t=e.clientY;//鼠标点击的位置，与浏览窗口上边的距离
+_div.css({top:t,left:l});
+_div.animate({top:_t},500,function(){ 
+$(this).remove();//移除掉
+
+//创建30个小碎片
+var i=0;
+var sp_div=[];  //["a","b","c"];alert(sp_div[1]);
+
+for(i=0;i<50;i++){
+sp_div[i]=$("<div></div>");
+sp_div[i].css({width:"6px",height:"6px",background:"#"+sj_color(),top:_t,left:l});
+$("body").append(sp_div[i]);
+sp_div[i].speedX=Math.random()*20-10; //x轴的速度
+sp_div[i].speedY=Math.random()*20-10;//Y轴的速度
+}
+//设置定时器，让小碎片跑起来
+setInterval(function(){
+	var j=0;
+	for(j=0;j<50;j++){
+		if(!sp_div[j]) continue; //跳过当前这个，继续下一个
+		sp_div[j].css({left:sp_div[j].position().left+sp_div[j].speedX,top:sp_div[j].position().top+sp_div[j].speedY});
+		sp_div[j].speedY=sp_div[j].speedY+1;
+		
+		if(sp_div[j].position().top>t || sp_div[j].position().left<0 || sp_div[j].position().left>w){
+			sp_div[j].remove();
+			sp_div[j]=null;
+		}
+	}
+
+},30);
+
+});
+});
+
+
+	//创建随机颜色
+	function sj_color(){
+		var _color=Math.ceil(Math.random()*16777215).toString(16);
+		while(_color.length<6){
+			_color="0"+_color;
+		}
+		return _color;//返回他的随机颜色
+	}
+	//alert(sj_color());
+ </script>
+
+
+
+ </body>
+</html>

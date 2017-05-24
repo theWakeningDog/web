@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 640px;
+				height: 400px;
+				cursor: pointer;
+				overflow: hidden;
+				margin: 0 auto;
+			}
+			.box ul{
+				position: relative;
+				list-style: none;
+				text-align: center;
+				color: white;
+				font-size: 30em;
+				line-height: 400px;
+			}
+			.box ul li{
+				width: 500px;
+				height: 400px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			ul li:nth-child(1){
+				background-color: gray;
+				left: 0;
+			}
+			ul li:nth-child(2){
+				background-color: black;
+				left: 80px;
+			}
+			ul li:nth-child(3){
+				background-color: blueviolet;
+				left: 160px;
+			}
+			ul li:nth-child(4){
+				background-color: yellow;
+				left: 240px;
+			}
+			ul li:nth-child(5){
+				background-color: purple;
+				left: 320px;
+			}
+			ul li:nth-child(6){
+				background-color: green;
+				left: 400px;
+			}
+			ul li:nth-child(7){
+				background-color: brown;
+				left: 480px;
+			}
+			ul li:nth-child(8){
+				background-color: palevioletred;
+				left: 560px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+				<li>7</li>
+				<li>8</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="jquery-1.8.3.min.js" ></script>
+	<script>
+		$(function(){
+			
+			var len=$(".box ul li").length;
+			
+				$(".box ul li").hover(function(){
+					for(var i=0;i<=$(this).index();i++){
+					$(".box ul li").eq(i).stop().animate({left:30*i},500);
+					}
+					for(;i<len;i++){
+					$(".box ul li").eq(i).stop().animate({left:30*i+400},500);
+					}
+					
+				},function(){
+					for(var i=0;i<len;i++){
+					$(".box ul li").eq(i).stop().animate({left:80*i},500);
+					}
+				})
+		})
+	</script>
+</html>
